@@ -1,2 +1,2 @@
 # Toolkit
-Simple tool for easy tasks.
+Simple python tool for excel merging tasks.
