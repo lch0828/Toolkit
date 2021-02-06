@@ -9,7 +9,7 @@ import numpy as np
 
 def fuzzy_merge(df_1, df_2, key1, key2, threshold,self,limit=1):
 
-    self.lb3.insert(END,"檔案處理中...")
+    self.lb3.insert(END,"Processing...")
     
     df_1[key1] = df_1[key1].fillna(method='ffill')
     df_2[key2] = df_2[key2].fillna(method='ffill')
@@ -33,8 +33,8 @@ def fuzzy_merge(df_1, df_2, key1, key2, threshold,self,limit=1):
 
     self.progress['value'] = 60
     
-    df_1['numKey1'] = df_1[key1].apply(lambda x: re.findall("[一二三五六七八九十]",x))
-    df_1['numKey2'] = df_1['matches'].apply(lambda x: re.findall("[一二三五六七八九十]",x))
+    df_1['numKey1'] = df_1[key1].apply(lambda x: re.findall("[123456789]",x))
+    df_1['numKey2'] = df_1['matches'].apply(lambda x: re.findall("[123456789]",x))
     for i in range(0,len(df_1['numKey1'])):
         if df_1['numKey1'][i] != df_1['numKey2'][i]:
             df_1.loc[i, 'matches'] = '' 
@@ -52,7 +52,7 @@ def fuzzy_merge(df_1, df_2, key1, key2, threshold,self,limit=1):
 def exceldealfunc(filename1,filename2,filename3,num1,num2,num3,self):
     f1  = pd.read_excel(filename1)
     f2  = pd.read_excel(filename2)
-    self.lb3.insert(END,"檔案讀取完成")
+    self.lb3.insert(END,"File reading done")
     self.progress['value'] = 10
     if num3 == 100:
         merged = f1.merge(f2, left_on = f1.columns[num1], right_on = f2.columns[num2], how = 'left')
@@ -61,6 +61,6 @@ def exceldealfunc(filename1,filename2,filename3,num1,num2,num3,self):
         merged = f1Merged.merge(f2, left_on = 'matches', right_on = f2.columns[num2], how = 'left')
     with pd.ExcelWriter(filename3) as writer:
         merged.to_excel(writer, sheet_name='Result')
-    self.lb3.insert(END,"檔案寫入完成")
+    self.lb3.insert(END,"File writing done")
     self.progress['value'] = 100
 
