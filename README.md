@@ -8,4 +8,4 @@ The following package might need to be installed. (pip install)
 4.xlrd
 5.openpyxl
 
-Simply run the MainInterface.py while making sure ExcelFunc is in the same path.
+Simply run the MainInterface.py while making sure ExcelFunc.py is in the same path.
