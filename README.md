@@ -1,5 +1,5 @@
 # ExcelMerge
-Simple python tool for excel merging tasks based in desired column similarity, works both on Windows and MacOS.
+Simple python tool for excel merging tasks based on desired column similarity, works both on Windows and MacOS.
 
 ## Run
 ```
